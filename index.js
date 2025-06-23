@@ -1,6 +1,6 @@
 // index.js
 const { Client, GatewayIntentBits, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
-require('dotenv').config(); // Loads .env
+require('dotenv').config();
 
 const TOKEN = process.env.BOT_TOKEN;
 
@@ -35,12 +35,14 @@ client.on('messageCreate', async (message) => {
 
   try {
     await message.delete();
+    // optional: small delay to ensure Discord has time to process the deletion
+    await new Promise(resolve => setTimeout(resolve, 300)); 
   } catch (error) {
     console.error('❌ Failed to delete message:', error);
   }
 
   await message.channel.send({
-    content: 'Click below to join the lobby:',
+    content: 'Click below to join the Steam lobby:',
     components: [row],
   });
 });
