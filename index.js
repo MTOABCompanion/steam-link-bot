@@ -33,12 +33,12 @@ client.on('messageCreate', async (message) => {
       .setURL(redirectUrl)
   );
 
-  await message.delete();
-
-  message.channel.send({
-    content: 'Click below to join the Steam lobby:',
+  // Don’t delete the message — just reply with a button
+  await message.reply({
+    content: 'Here’s your quick-join Steam lobby:',
     components: [row],
   });
 });
+
 
 client.login(TOKEN);
