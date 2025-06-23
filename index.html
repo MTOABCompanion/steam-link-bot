@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Redirecting to Steam...</title>
+  <script>
+    // Get the ?lobby=... parameter
+    const params = new URLSearchParams(window.location.search);
+    const lobby = params.get("lobby");
+
+    if (lobby && lobby.startsWith("steam://")) {
+      // Redirect to the Steam link
+      window.location.href = lobby;
+    } else {
+      document.write("<p>⚠️ Invalid or missing Steam lobby link.</p>");
+    }
+  </script>
+</head>
+<body>
+  <p>Redirecting to Steam... If nothing happens, <a id="fallback" href="#">click here</a>.</p>
+  <script>
+    const link = document.getElementById("fallback");
+    if (lobby) {
+      link.href = lobby;
+      link.textContent = "Click here to join manually";
+    }
+  </script>
+</body>
+</html>
