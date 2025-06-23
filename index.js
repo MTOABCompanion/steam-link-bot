@@ -41,10 +41,4 @@ client.on('messageCreate', async (message) => {
   });
 });
 
-  message.reply({
-    content: `Here’s your quick-join Steam lobby:`,
-    components: [row],
-  });
-});
-
 client.login(TOKEN);
