@@ -24,7 +24,7 @@ client.on('messageCreate', async (message) => {
 
   const steamLink = match[0];
   const encoded = encodeURIComponent(steamLink);
-  const redirectUrl = `https://mtoabcompanion.github.io/steam-link-bot/?lobby=${encoded}`;
+  const redirectUrl = `https://mtoabcompanion.github.io/steamlink/?lobby=${encoded}`;
 
   const row = new ActionRowBuilder().addComponents(
     new ButtonBuilder()
