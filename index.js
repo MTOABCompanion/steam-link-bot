@@ -35,14 +35,15 @@ client.on('messageCreate', async (message) => {
 
   try {
     await message.delete();
-    // optional: small delay to ensure Discord has time to process the deletion
-    await new Promise(resolve => setTimeout(resolve, 300)); 
+    await new Promise(resolve => setTimeout(resolve, 300)); // small delay to prevent ghosting
   } catch (error) {
     console.error('❌ Failed to delete message:', error);
   }
 
+  const displayName = message.member?.nickname || message.author.username;
+
   await message.channel.send({
-    content: 'Click below to join the Steam lobby:',
+    content: `Click to join **${displayName}**'s lobby:`,
     components: [row],
   });
 });
