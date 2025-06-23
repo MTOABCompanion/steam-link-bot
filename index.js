@@ -16,25 +16,31 @@ client.once('ready', () => {
   console.log(`✅ Logged in as ${client.user.tag}`);
 });
 
-client.on('messageCreate', (message) => {
-  if (message.author.bot) return;
+  client.on('messageCreate', async (message) => {
+      if (message.author.bot) return;
 
-  // Match steam join link pattern
-  const match = message.content.match(/steam:\/\/joinlobby\/\d+\/\d+\/\d+/i);
-  if (!match) return;
+      const match = message.content.match(/steam:\/\/joinlobby\/\d+\/\d+\/\d+/);
+      if (!match) return;
 
-  const steamLink = match[0];
-  const encoded = encodeURIComponent(steamLink);
+      const steamLink = match[0];
+      const encoded = encodeURIComponent(steamLink);
+      const redirectUrl = `https://mtoabcompanion.github.io/steamlink/lobby?link=${encoded}`;
 
-  // Replace this with your GitHub Pages redirect link
-  const redirectUrl = `https://mtoabcompanion.github.io/steamlink/?lobby=${encoded}`;
+      const row = new ActionRowBuilder().addComponents(
+          new ButtonBuilder()
+              .setLabel('Join Game')
+              .setStyle(ButtonStyle.Link)
+              .setURL(redirectUrl)
+      );
 
-  const row = new ActionRowBuilder().addComponents(
-    new ButtonBuilder()
-      .setLabel('🎮 Join Game')
-      .setStyle(ButtonStyle.Link)
-      .setURL(redirectUrl)
-  );
+      await message.delete(); 
+
+      message.channel.send({
+          content: 'Click below to join the Steam lobby:',
+          components: [row],
+      });
+  });
+
 
   message.reply({
     content: `Here’s your quick-join Steam lobby:`,
