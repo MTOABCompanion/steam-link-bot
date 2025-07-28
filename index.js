@@ -2,10 +2,7 @@
 const { Client, GatewayIntentBits, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 require('dotenv').config();
 
-client.login(process.env.TOKEN);
-
-
-const TOKEN = process.env.BOT_TOKEN;
+const TOKEN = process.env.BOT_TOKEN; // ✅ use the correct key from your .env
 
 const client = new Client({
   intents: [
@@ -38,7 +35,7 @@ client.on('messageCreate', async (message) => {
 
   try {
     await message.delete();
-    await new Promise(resolve => setTimeout(resolve, 300)); // small delay to prevent ghosting
+    await new Promise(resolve => setTimeout(resolve, 300));
   } catch (error) {
     console.error('❌ Failed to delete message:', error);
   }
