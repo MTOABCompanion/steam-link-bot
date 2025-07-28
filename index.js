@@ -2,6 +2,9 @@
 const { Client, GatewayIntentBits, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 require('dotenv').config();
 
+client.login(process.env.TOKEN);
+
+
 const TOKEN = process.env.BOT_TOKEN;
 
 const client = new Client({
