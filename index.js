@@ -2,7 +2,7 @@
 const { Client, GatewayIntentBits, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 require('dotenv').config();
 
-const TOKEN = process.env.BOT_TOKEN; // ✅ use the correct key from your .env
+const TOKEN = process.env.TOKEN; 
 
 const client = new Client({
   intents: [
@@ -48,4 +48,4 @@ client.on('messageCreate', async (message) => {
   });
 });
 
-client.login(TOKEN);
+client.login(TOKEN); 
