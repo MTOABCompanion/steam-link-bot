@@ -47,4 +47,5 @@ client.on('messageCreate', async (message) => {
 
 console.log(`Token length: ${TOKEN.length}`);
 
-client.login(TOKEN);
+client.login(process.env.TOKEN);
+
